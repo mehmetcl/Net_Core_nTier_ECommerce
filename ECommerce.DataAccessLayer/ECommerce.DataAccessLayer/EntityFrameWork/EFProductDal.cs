@@ -16,13 +16,16 @@ namespace ECommerce.DataAccessLayer.EntityFrameWork
     {
         public EFProductDal(ECommerceContext context) : base(context)
         {
-
         }
-        public async Task<List<Product>> GetProductWithCategoryAsync()
-        {
-            return await _context.Products.Include(p => p.Category).ToListAsync();
-           
 
+        public IQueryable<Product> GetProductsByCategoryId(int categoryId)
+        {
+            return _context.Products.Where(x => x.CategoryId == categoryId);
+        }
+
+        public async Task<List<Product>> GetProductsWitCategoryAsync()
+        {
+            return await _context.Products.Include(x => x.Category).ToListAsync();
         }
     }
 }

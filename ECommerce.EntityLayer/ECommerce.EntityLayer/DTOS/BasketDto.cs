@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ECommerce.EntityLayer.Concrete
+namespace ECommerce.EntityLayer.DTOS
 {
-    public class Basket 
+    public class BasketDto
     {
         public int Id { get; set; }
 
@@ -14,9 +14,6 @@ namespace ECommerce.EntityLayer.Concrete
 
         public int UserId { get; set; }
 
-        public User User { get; set; }
-
         public int ProductId { get; set; }
-        public Product Product { get; set; }
     }
 }

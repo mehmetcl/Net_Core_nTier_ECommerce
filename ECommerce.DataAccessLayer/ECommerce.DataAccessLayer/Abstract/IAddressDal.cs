@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace ECommerce.DataAccessLayer.Abstract
 {
-    public interface IProductDal:IGenericDal<Product> 
+    public interface IAddressDal:IGenericDal<Address>
     {
-        Task<List<Product>> GetProductsWitCategoryAsync();
-        IQueryable<Product> GetProductsByCategoryId(int categoryId);
-
-    }
+        IQueryable<Address> GetAddress(int userId);
+    }    
 }

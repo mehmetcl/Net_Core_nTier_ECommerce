@@ -4,13 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ECommerce.EntityLayer.Concrete
+namespace ECommerce.EntityLayer.DTOS
 {
-    public class Category :BaseEntity
+    public class RoleDto
     {
-     
+        public int Id { get; set; }
         public string Name { get; set; }
-
-        public ICollection<Product> Products { get; set; }
     }
 }

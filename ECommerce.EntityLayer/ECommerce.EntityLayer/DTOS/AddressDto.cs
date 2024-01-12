@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ECommerce.EntityLayer.Concrete
+namespace ECommerce.EntityLayer.DTOS
 {
-    public class Address :BaseEntity
+    public class AddressDto:BaseDto
     {
-
         public string Country { get; set; }
 
         public string Province { get; set; }
@@ -20,9 +19,5 @@ namespace ECommerce.EntityLayer.Concrete
         public string Title { get; set; }
 
         public int UserId { get; set; }
-
-        public User User { get; set; }
-
-        public ICollection<Order>? Orders { get; set; }
     }
 }

@@ -34,6 +34,9 @@ namespace ECommerce.DataAccessLayer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -41,35 +44,6 @@ namespace ECommerce.DataAccessLayer.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Abouts");
-                });
-
-            modelBuilder.Entity("ECommerce.EntityLayer.Concrete.AboutImage", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AboutId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DisplayOrder")
-                        .HasColumnType("int");
-
-                    b.Property<byte[]>("ImageData")
-                        .IsRequired()
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AboutId");
-
-                    b.ToTable("AboutImages");
                 });
 
             modelBuilder.Entity("ECommerce.EntityLayer.Concrete.Address", b =>
@@ -80,21 +54,31 @@ namespace ECommerce.DataAccessLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("City")
+                    b.Property<string>("Content")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("Country")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("District")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Town")
+                    b.Property<string>("Province")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -113,6 +97,9 @@ namespace ECommerce.DataAccessLayer.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Piece")
+                        .HasColumnType("int");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
@@ -137,13 +124,20 @@ namespace ECommerce.DataAccessLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("ECommerce.EntityLayer.Concrete.Order", b =>
@@ -157,14 +151,20 @@ namespace ECommerce.DataAccessLayer.Migrations
                     b.Property<int>("AddressId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("AddressId1")
-                        .HasColumnType("int");
-
                     b.Property<int>("Case")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("Piece")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
@@ -172,21 +172,13 @@ namespace ECommerce.DataAccessLayer.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UserId1")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("price")
-                        .HasColumnType("decimal(18,2)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("AddressId");
 
-                    b.HasIndex("AddressId1");
+                    b.HasIndex("ProductId");
 
                     b.HasIndex("UserId");
-
-                    b.HasIndex("UserId1");
 
                     b.ToTable("Orders");
                 });
@@ -209,15 +201,16 @@ namespace ECommerce.DataAccessLayer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<int?>("ProductImageId")
-                        .HasColumnType("int");
 
                     b.Property<int>("Stock")
                         .HasColumnType("int");
@@ -232,35 +225,6 @@ namespace ECommerce.DataAccessLayer.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("ECommerce.EntityLayer.Concrete.ProductImage", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("DisplayOrder")
-                        .HasColumnType("int");
-
-                    b.Property<byte[]>("ImageData")
-                        .IsRequired()
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ProductImages");
-                });
-
             modelBuilder.Entity("ECommerce.EntityLayer.Concrete.Role", b =>
                 {
                     b.Property<int>("Id")
@@ -271,7 +235,8 @@ namespace ECommerce.DataAccessLayer.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
@@ -295,7 +260,8 @@ namespace ECommerce.DataAccessLayer.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
@@ -305,7 +271,13 @@ namespace ECommerce.DataAccessLayer.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("RoleId")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(1);
+
+                    b.Property<string>("Surname")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
@@ -318,17 +290,6 @@ namespace ECommerce.DataAccessLayer.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("ECommerce.EntityLayer.Concrete.AboutImage", b =>
-                {
-                    b.HasOne("ECommerce.EntityLayer.Concrete.About", "About")
-                        .WithMany("Images")
-                        .HasForeignKey("AboutId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("About");
                 });
 
             modelBuilder.Entity("ECommerce.EntityLayer.Concrete.Address", b =>
@@ -364,26 +325,26 @@ namespace ECommerce.DataAccessLayer.Migrations
             modelBuilder.Entity("ECommerce.EntityLayer.Concrete.Order", b =>
                 {
                     b.HasOne("ECommerce.EntityLayer.Concrete.Address", "Address")
-                        .WithMany()
+                        .WithMany("Orders")
                         .HasForeignKey("AddressId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ECommerce.EntityLayer.Concrete.Address", null)
+                    b.HasOne("ECommerce.EntityLayer.Concrete.Product", "Product")
                         .WithMany("Orders")
-                        .HasForeignKey("AddressId1");
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("ECommerce.EntityLayer.Concrete.User", "User")
-                        .WithMany()
+                        .WithMany("Orders")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("ECommerce.EntityLayer.Concrete.User", null)
-                        .WithMany("Orders")
-                        .HasForeignKey("UserId1");
-
                     b.Navigation("Address");
+
+                    b.Navigation("Product");
 
                     b.Navigation("User");
                 });
@@ -399,17 +360,6 @@ namespace ECommerce.DataAccessLayer.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("ECommerce.EntityLayer.Concrete.ProductImage", b =>
-                {
-                    b.HasOne("ECommerce.EntityLayer.Concrete.Product", "Product")
-                        .WithMany("Images")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("ECommerce.EntityLayer.Concrete.User", b =>
                 {
                     b.HasOne("ECommerce.EntityLayer.Concrete.Role", "Role")
@@ -419,11 +369,6 @@ namespace ECommerce.DataAccessLayer.Migrations
                         .IsRequired();
 
                     b.Navigation("Role");
-                });
-
-            modelBuilder.Entity("ECommerce.EntityLayer.Concrete.About", b =>
-                {
-                    b.Navigation("Images");
                 });
 
             modelBuilder.Entity("ECommerce.EntityLayer.Concrete.Address", b =>
@@ -438,7 +383,7 @@ namespace ECommerce.DataAccessLayer.Migrations
 
             modelBuilder.Entity("ECommerce.EntityLayer.Concrete.Product", b =>
                 {
-                    b.Navigation("Images");
+                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("ECommerce.EntityLayer.Concrete.Role", b =>

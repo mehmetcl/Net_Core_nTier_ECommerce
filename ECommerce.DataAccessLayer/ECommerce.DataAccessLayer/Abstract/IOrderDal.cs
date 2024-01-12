@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace ECommerce.DataAccessLayer.Abstract
 {
-    public interface IProductDal:IGenericDal<Product> 
+    public interface IOrderDal:IGenericDal<Order>
     {
-        Task<List<Product>> GetProductsWitCategoryAsync();
-        IQueryable<Product> GetProductsByCategoryId(int categoryId);
+        IQueryable<Order> GetOrdersByUserId(int userId);
 
+        Task CreateOrderAsync(Order order);
     }
 }

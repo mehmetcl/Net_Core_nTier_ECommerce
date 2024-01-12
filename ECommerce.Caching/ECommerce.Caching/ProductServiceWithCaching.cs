@@ -81,7 +81,7 @@ namespace ECommerce.Caching
         public async Task<CustomResponseDto<List<ProductWithCategoryDto>>> GetProductWithCategory()
         {
             //Not caching
-            var products = await _repository.GetProductWithCategoryAsync();
+            var products = await _repository.GetProductsWitCategoryAsync();
             var productsWtihCategoryDto = _mapper.Map<List<ProductWithCategoryDto>>(products);
             return CustomResponseDto<List<ProductWithCategoryDto>>.Success(200, productsWtihCategoryDto);
         }

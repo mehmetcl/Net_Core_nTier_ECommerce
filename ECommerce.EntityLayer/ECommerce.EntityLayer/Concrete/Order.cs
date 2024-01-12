@@ -10,16 +10,22 @@ namespace ECommerce.EntityLayer.Concrete
 {
     public class Order : BaseEntity
     {
-      
-        public decimal price { get; set; }
+        public int Price { get; set; }
+        public int Piece { get; set; }
+
 
         public int UserId { get; set; }
-
         public User User { get; set; }
+
+
+        public int ProductId { get; set; }
+        public Product Product { get; set; }
+
 
         public int AddressId { get; set; }
 
-        public Address Address { get; set; }    
+        public Address Address { get; set; }
+
 
         public OrderStatus Case { get; set; }
 

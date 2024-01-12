@@ -25,7 +25,7 @@ namespace ECommerce.BusinessLayer.Concrete
 
         public async Task<CustomResponseDto<List<ProductWithCategoryDto>>> GetProductWithCategory()
         {
-            var product = await _productdal.GetProductWithCategoryAsync();
+            var product = await _productdal.GetProductsWitCategoryAsync();
 
             var producsDto = _mapper.Map<List<ProductWithCategoryDto>>(product);
             return CustomResponseDto<List<ProductWithCategoryDto>>.Success(200, producsDto);

@@ -13,7 +13,7 @@ namespace ECommerce.API.Helpers
             CreateMap<Product, ProductWithCategoryDto>();
             CreateMap<Category, CategoryWithProductDto>();
             CreateMap<CategoryWithProductDto, Category>();
-
+          
         }
     }
 }
