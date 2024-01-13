@@ -56,7 +56,8 @@ namespace ECommerce.Caching
 
         public async Task<bool> AnyAsync(Expression<Func<Product, bool>> expression)
         {
-           throw new NotImplementedException(); 
+
+            return await _repository.AnyAsync(x => x.Name == expression.Name); ;
         }
 
         public Task<IEnumerable<Product>> GetAllAsync()

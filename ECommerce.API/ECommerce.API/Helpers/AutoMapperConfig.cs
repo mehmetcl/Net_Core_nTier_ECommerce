@@ -13,7 +13,10 @@ namespace ECommerce.API.Helpers
             CreateMap<Product, ProductWithCategoryDto>();
             CreateMap<Category, CategoryWithProductDto>();
             CreateMap<CategoryWithProductDto, Category>();
-          
+            CreateMap<Address, AddressDto>().ReverseMap();
+            CreateMap<Basket, BasketDto>().ReverseMap();
+            CreateMap<Order , OrderDto>().ReverseMap();
+            CreateMap<User, UserDto>().ReverseMap();
         }
     }
 }
