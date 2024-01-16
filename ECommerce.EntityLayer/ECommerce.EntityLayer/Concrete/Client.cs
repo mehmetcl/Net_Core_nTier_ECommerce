@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace ECommerce.EntityLayer.Concrete
 {
-    public abstract class BaseEntity
+    public class Client
     {
         public string Id { get; set; }
 
-        public DateTime CreatedDate { get; set; }
+        public string Secret { get; set; }
 
-        public DateTime? UpdatedDate { get; set; }
+        //www.myapi1.com www.myapi2.com
+        public List<String> Audiences { get; set; }
     }
 }

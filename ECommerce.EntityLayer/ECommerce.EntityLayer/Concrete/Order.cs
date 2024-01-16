@@ -10,6 +10,9 @@ namespace ECommerce.EntityLayer.Concrete
 {
     public class Order : BaseEntity
     {
+       
+
+
         public int Price { get; set; }
         public int Piece { get; set; }
 
@@ -28,6 +31,10 @@ namespace ECommerce.EntityLayer.Concrete
 
 
         public OrderStatus Case { get; set; }
+
+        public DateTime? CreatedDate { get; set; }
+
+        public DateTime? UpdatedDate { get; set; }
 
     }
 

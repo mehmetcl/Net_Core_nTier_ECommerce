@@ -4,6 +4,8 @@ using ECommerce.BusinessLayer.Exceptions;
 using ECommerce.DataAccessLayer.Abstract;
 using ECommerce.DataAccessLayer.UnitOfWork;
 using ECommerce.EntityLayer.Concrete;
+using ECommerce.EntityLayer.DTOS;
+using ECommerce.SharedLibrary.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,32 +25,14 @@ namespace ECommerce.BusinessLayer.Concrete
             _mapper = mapper;
         }
 
-        public async Task BlokeAsync(int id)
+        public Task<CustomResponseDto<UserDto>> CreateUserAsync(UserDto userDto)
         {
-            _userDal.Block(id);
-            _unitofWork.CommitAsync();
-
+            throw new NotImplementedException();
         }
 
-        public async Task<bool> EmailCheckAsync(string email)
+        public Task<CustomResponseDto<UserDto>> GetUserByNameAsync(string userName)
         {
-
-            return await _userDal.EmailCheckAsync(email);
-        }
-
-        public async Task<User> LoginAsync(string userNameOrEmail, string password)
-        {
-            var user = await _userDal.LoginAsync(userNameOrEmail, password);
-            if (user == null)
-            {
-                throw new NotFoundException($"{typeof(User).Name} {userNameOrEmail} not found");
-            }
-            return user;
-        }
-
-        public async Task<bool> UsernameCheckAsync(string username)
-        {
-            return await _userDal.UsernameCheckAsync(username);
+            throw new NotImplementedException();
         }
     }
 }

@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerce.DataAccessLayer",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerce.EntityLayer", "..\ECommerce.EntityLayer\ECommerce.EntityLayer\ECommerce.EntityLayer.csproj", "{FC14AA6D-3FBA-467E-AC07-044F10922B7C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerce.Caching", "..\ECommerce.Caching\ECommerce.Caching\ECommerce.Caching.csproj", "{843D4367-7031-459D-9181-24C0660CF24F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerce.Caching", "..\ECommerce.Caching\ECommerce.Caching\ECommerce.Caching.csproj", "{843D4367-7031-459D-9181-24C0660CF24F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerce.SharedLibrary", "..\ECommerce.SharedLibrary\ECommerce.SharedLibrary\ECommerce.SharedLibrary.csproj", "{B7B2CEB9-E275-4F37-8419-7454FEEB5554}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{843D4367-7031-459D-9181-24C0660CF24F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{843D4367-7031-459D-9181-24C0660CF24F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{843D4367-7031-459D-9181-24C0660CF24F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7B2CEB9-E275-4F37-8419-7454FEEB5554}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7B2CEB9-E275-4F37-8419-7454FEEB5554}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7B2CEB9-E275-4F37-8419-7454FEEB5554}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7B2CEB9-E275-4F37-8419-7454FEEB5554}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

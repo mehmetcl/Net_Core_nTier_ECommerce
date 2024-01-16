@@ -1,6 +1,7 @@
 ﻿using ECommerce.BusinessLayer.Abstract;
 using ECommerce.EntityLayer.Concrete;
 using ECommerce.EntityLayer.DTOS;
+using ECommerce.SharedLibrary.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
@@ -23,7 +24,7 @@ namespace ECommerce.API.Filters
                 return;
             }
             var id = (int)idValue;
-            var anyEntity=await _service.AnyAsync(x=>x.Id==id);
+            var anyEntity=await _service.AnyAsync(x=>int.Parse(x.Id)==id);
             if (anyEntity)
             {
                 await next.Invoke();

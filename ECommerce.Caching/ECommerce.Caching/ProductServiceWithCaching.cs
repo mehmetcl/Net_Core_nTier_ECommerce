@@ -5,6 +5,7 @@ using ECommerce.DataAccessLayer.Abstract;
 using ECommerce.DataAccessLayer.UnitOfWork;
 using ECommerce.EntityLayer.Concrete;
 using ECommerce.EntityLayer.DTOS;
+using ECommerce.SharedLibrary.Dtos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using System;
@@ -66,10 +67,10 @@ namespace ECommerce.Caching
                 .Get<IEnumerable<Product>>(CacheProductKey));
         }
 
-        public Task<Product> GetByIdAsync(int id)
+        public Task<Product> GetByIdAsync(string id)
         {
 
-            Product product = _memoryCache.Get<List<Product>>(CacheProductKey).FirstOrDefault(x => x.Id == id);
+            Product product = _memoryCache.Get<List<Product>>(CacheProductKey).FirstOrDefault(x => int.Parse(x.Id) == int.Parse(id));
 
             if (product == null)
             {

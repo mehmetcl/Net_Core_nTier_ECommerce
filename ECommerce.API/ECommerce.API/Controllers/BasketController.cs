@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using ECommerce.BusinessLayer.Abstract;
+using ECommerce.BusinessLayer.Concrete;
 using ECommerce.EntityLayer.Concrete;
 using ECommerce.EntityLayer.DTOS;
+using ECommerce.SharedLibrary.Dtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -41,7 +43,7 @@ namespace ECommerce.API.Controllers
             return CreateActionResult(CustomResponseDto<BasketDto>.Success(200, basketsDtos));
         }
         [HttpGet("{id}")] 
-        public async Task<IActionResult> GetById(int id)
+        public async Task<IActionResult> GetById(string id)
         {
             var basket = await _basketService.GetByIdAsync(id);
             var basketDto = _mapper.Map<BasketDto>(basket);
@@ -71,7 +73,7 @@ namespace ECommerce.API.Controllers
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Remove(int id)
+        public async Task<IActionResult> Remove(string id)
         {
             var basket = await _basketService.GetByIdAsync(id);
             await _basketService.RemoveAsync(basket);

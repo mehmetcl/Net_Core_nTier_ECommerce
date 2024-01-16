@@ -1,5 +1,7 @@
 ﻿using ECommerce.DataAccessLayer.Configurations;
 using ECommerce.EntityLayer.Concrete;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,12 +12,12 @@ using System.Threading.Tasks;
 
 namespace ECommerce.DataAccessLayer.Concrete
 {
-    public class ECommerceContext : DbContext
+    public class ECommerceContext : IdentityDbContext<User, IdentityRole,string>
     {
+        public ECommerceContext(DbContextOptions<ECommerceContext> options) : base(options)
+        {
+        }
 
-        public ECommerceContext(DbContextOptions<ECommerceContext> options):base(options) { }
-
-    
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Basket> Baskets { get; set; }
         public DbSet<Category> Categories { get; set; }
@@ -24,12 +26,13 @@ namespace ECommerce.DataAccessLayer.Concrete
         public DbSet<Role> Roles { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<About> Abouts { get; set; }
-
-
+        public DbSet<UserRefreshToken> UserRefreshTokens { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
-            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            //modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
             base.OnModelCreating(modelBuilder);
         }
 

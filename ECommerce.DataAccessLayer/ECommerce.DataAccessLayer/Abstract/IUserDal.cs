@@ -9,7 +9,7 @@ namespace ECommerce.DataAccessLayer.Abstract
 {
     public interface IUserDal:IGenericDal<User>
     {
-        void Block(int id);
+        void Block(string id);
 
         Task<User> LoginAsync(string userNameOrEmail, string password);
 

@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\ECommerce.Caching\ECommerce.Caching\ECommerce.Caching.csproj" />
+    <ProjectReference Include="..\..\ECommerce.SharedLibrary\ECommerce.SharedLibrary\ECommerce.SharedLibrary.csproj" />
   </ItemGroup>
 
 </Project>

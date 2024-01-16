@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace ECommerce.EntityLayer.Concrete
 {
-    public class Category :BaseEntity
+    public class UserRefreshToken
     {
-      
-    
-        public string Name { get; set; }
+        public string UserId { get; set; }
 
-  
-        public ICollection<Product> Products { get; set; }
+        public string Code { get; set; }
+        
+        public DateTime Expiration { get; set; }
     }
 }

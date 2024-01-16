@@ -9,7 +9,7 @@ namespace ECommerce.DataAccessLayer.Abstract
 {
     public interface IGenericDal<T> where T : class
     {
-        Task<T> GetByIdAsync(int id);
+        Task<T> GetByIdAsync(string id);
 
         IQueryable<T> GetAll();
 

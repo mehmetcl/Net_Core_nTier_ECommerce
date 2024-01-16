@@ -3,6 +3,7 @@ using ECommerce.API.Filters;
 using ECommerce.BusinessLayer.Abstract;
 using ECommerce.EntityLayer.Concrete;
 using ECommerce.EntityLayer.DTOS;
+using ECommerce.SharedLibrary.Dtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -50,11 +51,11 @@ namespace ECommerce.API.Controllers
             await _categoryService.UpdateAsync(_mapper.Map<Category>(categoryDto));
 
 
-            return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
+            return CreateActionResult(SharedLibrary.Dtos.CustomResponseDto<NoContentDto>.Success(204));
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Remove(int id)
+        public async Task<IActionResult> Remove(string id)
         {
             var category = await _categoryService.GetByIdAsync(id);
 

@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\ECommerce.DataAccessLayer\ECommerce.DataAccessLayer\ECommerce.DataAccessLayer.csproj" />
+    <ProjectReference Include="..\..\ECommerce.SharedLibrary\ECommerce.SharedLibrary\ECommerce.SharedLibrary.csproj" />
   </ItemGroup>
 
 </Project>

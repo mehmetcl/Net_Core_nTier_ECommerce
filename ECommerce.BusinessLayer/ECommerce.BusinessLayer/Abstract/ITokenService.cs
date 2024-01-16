@@ -1,6 +1,5 @@
 ﻿using ECommerce.EntityLayer.Concrete;
 using ECommerce.EntityLayer.DTOS;
-using ECommerce.SharedLibrary.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace ECommerce.BusinessLayer.Abstract
 {
-    public interface IUserService:IGenericService<User>
+    public interface ITokenService
     {
-        Task<CustomResponseDto<UserDto>> CreateUserAsync(UserDto userDto);
+        TokenDto CreateToken(User user);
 
-        Task<CustomResponseDto<UserDto>> GetUserByNameAsync(string userName);
+        ClientTokenDto CreateTokenByClient(Client client);
     }
 }

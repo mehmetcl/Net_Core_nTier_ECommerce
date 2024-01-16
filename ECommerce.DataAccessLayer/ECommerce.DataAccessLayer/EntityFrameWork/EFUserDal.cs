@@ -17,11 +17,11 @@ namespace ECommerce.DataAccessLayer.EntityFrameWork
         {
         }
 
-        public void Block(int id)
+        public void Block(string id)
         {
             var user = _context.Users.Where(x => x.Id == id).FirstOrDefault();
             if (user == null) return;
-            user.RoleId = 3;
+           // user.role = 3;
             _context.Update(user);
         }
 
@@ -32,7 +32,7 @@ namespace ECommerce.DataAccessLayer.EntityFrameWork
 
         public async Task<User> LoginAsync(string userNameOrEmail, string password)
         {
-            return await _context.Users.Where(x => (x.UserName == userNameOrEmail || x.Email == userNameOrEmail) && x.Password == password).FirstOrDefaultAsync();
+            return await _context.Users.Where(x => (x.UserName == userNameOrEmail || x.Email == userNameOrEmail) && x.PasswordHash == password).FirstOrDefaultAsync();
         }
 
         public async Task<bool> UsernameCheckAsync(string username)

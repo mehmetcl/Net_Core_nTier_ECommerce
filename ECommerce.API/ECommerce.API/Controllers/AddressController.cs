@@ -2,6 +2,7 @@
 using ECommerce.BusinessLayer.Abstract;
 using ECommerce.EntityLayer.Concrete;
 using ECommerce.EntityLayer.DTOS;
+using ECommerce.SharedLibrary.Dtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Client;
@@ -32,7 +33,7 @@ namespace ECommerce.API.Controllers
         }
         [HttpGet("{addressId}")]
 
-        public async Task<IActionResult> GetAddressById(int addressId)
+        public async Task<IActionResult> GetAddressById(string addressId)
         {
             var addresses = await _addressService.GetByIdAsync(addressId);
             var addressesDto = _mapper.Map<AddressDto>(addresses);
@@ -58,7 +59,7 @@ namespace ECommerce.API.Controllers
         }
         [HttpDelete("{id}")]
 
-        public async Task<IActionResult> Remove(int id)
+        public async Task<IActionResult> Remove(string id)
         {
             var address = await _addressService.GetByIdAsync(id);
                 await _addressService.RemoveAsync(address);

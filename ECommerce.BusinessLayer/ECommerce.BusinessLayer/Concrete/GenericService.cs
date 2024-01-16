@@ -46,7 +46,7 @@ namespace ECommerce.BusinessLayer.Concrete
             return await _genericDal.GetAll().ToListAsync();
         }
 
-        public async Task<T> GetByIdAsync(int id)
+        public async Task<T> GetByIdAsync(string id)
         {
             var hasProduct = await _genericDal.GetByIdAsync(id);
 

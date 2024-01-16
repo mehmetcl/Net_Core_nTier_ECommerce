@@ -3,6 +3,7 @@ using ECommerce.API.Filters;
 using ECommerce.BusinessLayer.Abstract;
 using ECommerce.EntityLayer.Concrete;
 using ECommerce.EntityLayer.DTOS;
+using ECommerce.SharedLibrary.Dtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -40,7 +41,7 @@ namespace ECommerce.API.Controllers
 
         [ServiceFilter(typeof(NotFoundFilter<Product>))] 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        public async Task<IActionResult> GetById(string id)
         {
             var product = await _service.GetByIdAsync(id);
             var productsDto = _mapper.Map<ProductDto>(product);
@@ -60,7 +61,7 @@ namespace ECommerce.API.Controllers
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Remove(int id)
+        public async Task<IActionResult> Remove(string id)
         {
             var product =await _service.GetByIdAsync(id);   
            await _service.RemoveAsync(product);

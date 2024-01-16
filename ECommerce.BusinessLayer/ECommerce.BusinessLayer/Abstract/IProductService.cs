@@ -1,5 +1,7 @@
-﻿using ECommerce.EntityLayer.Concrete;
+﻿using ECommerce.BusinessLayer.Concrete;
+using ECommerce.EntityLayer.Concrete;
 using ECommerce.EntityLayer.DTOS;
+using ECommerce.SharedLibrary.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;

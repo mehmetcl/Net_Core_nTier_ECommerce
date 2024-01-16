@@ -9,6 +9,7 @@ namespace ECommerce.EntityLayer.Concrete
     public class Address :BaseEntity
     {
 
+
         public string Country { get; set; }
 
         public string Province { get; set; }
@@ -22,6 +23,7 @@ namespace ECommerce.EntityLayer.Concrete
         public int UserId { get; set; }
 
         public User User { get; set; }
+ 
 
         public ICollection<Order>? Orders { get; set; }
     }

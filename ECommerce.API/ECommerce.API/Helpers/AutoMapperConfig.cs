@@ -17,6 +17,7 @@ namespace ECommerce.API.Helpers
             CreateMap<Basket, BasketDto>().ReverseMap();
             CreateMap<Order , OrderDto>().ReverseMap();
             CreateMap<User, UserDto>().ReverseMap();
+
         }
     }
 }

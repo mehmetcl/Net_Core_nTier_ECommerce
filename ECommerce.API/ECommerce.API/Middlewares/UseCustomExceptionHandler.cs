@@ -1,5 +1,6 @@
 ﻿using ECommerce.BusinessLayer.Exceptions;
 using ECommerce.EntityLayer.DTOS;
+using ECommerce.SharedLibrary.Dtos;
 using Microsoft.AspNetCore.Diagnostics;
 using System.Text.Json;
 
