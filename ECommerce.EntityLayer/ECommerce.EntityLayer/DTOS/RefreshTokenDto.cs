@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace ECommerce.EntityLayer.DTOS
 {
-    public class ClientTokenDto
+    public class RefreshTokenDto
     {
-        public string AccessToken { get; set; }
-
-        public DateTime AccessTokenExpiration { get; set; }
+        public string RefreshToken { get; set; }
     }
 }

@@ -19,7 +19,7 @@ namespace ECommerce.DataAccessLayer.EntityFrameWork
 
         public async Task<Category> GetSingleCategoryByIdProductsAsync(int categoryid)
         {
-            return await _context.Categories.Include(x => x.Products).Where(x => int.Parse(x.Id) == categoryid).SingleOrDefaultAsync();
+            return await _context.Categories.Include(x => x.Products).Where(x => x.Id == categoryid).SingleOrDefaultAsync();
         }
     }
 }

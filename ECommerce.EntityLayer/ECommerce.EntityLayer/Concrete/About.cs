@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ECommerce.EntityLayer.Concrete
 {
-    public class About 
+    public class About :BaseEntity
     {
-        public int Id { get; set; }
+        
         public string Title { get; set; }
         public string Description { get; set; }
         public string? ImageUrl { get; set; }

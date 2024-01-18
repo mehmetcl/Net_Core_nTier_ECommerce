@@ -24,7 +24,7 @@ namespace ECommerce.BusinessLayer.Concrete
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<Address>> GetAddressAsync(int userId)
+        public async Task<IEnumerable<Address>> GetAddressAsync(string userId)
         {
             var addresses = await _addressDal.GetAddress(userId).ToListAsync();
             if (addresses.Count <= 0)

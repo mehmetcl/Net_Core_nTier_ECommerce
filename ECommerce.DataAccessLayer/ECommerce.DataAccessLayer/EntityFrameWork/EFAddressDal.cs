@@ -17,7 +17,7 @@ namespace ECommerce.DataAccessLayer.EntityFrameWork
         {
         }
 
-        public IQueryable<Address> GetAddress(int userId)
+        public IQueryable<Address> GetAddress(string userId)
         {
           return _context.Addresses.Where(a => a.UserId == userId); 
         }

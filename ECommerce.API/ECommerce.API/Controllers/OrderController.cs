@@ -36,7 +36,7 @@ namespace ECommerce.API.Controllers
             return CreateActionResult(CustomResponseDto<OrderDto>.Success(201, ordersDto));
         }
         [HttpGet("[action]/{userId}")]
-        public async Task<IActionResult> GetOrders(int userId)
+        public async Task<IActionResult> GetOrders(string userId)
         {
             var orders = await _orderService.GetOrdersByUserIdAsync(userId);
             var ordersDtos = _mapper.Map<List<OrderDto>>(orders.ToList());

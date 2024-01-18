@@ -9,6 +9,6 @@ namespace ECommerce.BusinessLayer.Abstract
 {
     public interface  IAddressService:IGenericService<Address>
     {
-        Task<IEnumerable<Address>> GetAddressAsync(int userId);
+        Task<IEnumerable<Address>> GetAddressAsync(string userId);
     }
 }

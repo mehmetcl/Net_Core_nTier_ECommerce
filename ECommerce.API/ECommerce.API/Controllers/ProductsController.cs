@@ -10,18 +10,11 @@ using Microsoft.AspNetCore.Mvc;
 namespace ECommerce.API.Controllers
 {
 
-    public class ProductsController : CustomBaseController
+    public class ProductsController(IGenericService<Product> service, IMapper mapper, IProductService productService) : CustomBaseController
     {
-        private readonly IMapper _mapper;
-        private readonly IGenericService<Product> _service;
-        private readonly IProductService _productService;
-        public ProductsController(IGenericService<Product> service, IMapper mapper, IProductService productService)
-        {
-            _service = service;
-            _mapper = mapper;
-            _productService = productService;
-        }
-
+        private readonly IMapper _mapper = mapper;
+        private readonly IGenericService<Product> _service = service;
+        private readonly IProductService _productService = productService;
 
         [HttpGet("[action]")]
         public async Task<IActionResult> GetProductWithCategory()
@@ -58,14 +51,14 @@ namespace ECommerce.API.Controllers
         public async Task<IActionResult> Update(ProductDto productDto)
         {
            await _service.UpdateAsync(_mapper.Map<Product>(productDto));
-            return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
+            return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204, true));
         }
         [HttpDelete("{id}")]
         public async Task<IActionResult> Remove(string id)
         {
             var product =await _service.GetByIdAsync(id);   
            await _service.RemoveAsync(product);
-            return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
+            return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204,true));
         }
     }
 }

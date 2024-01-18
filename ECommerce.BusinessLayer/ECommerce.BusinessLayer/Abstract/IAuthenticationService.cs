@@ -14,9 +14,9 @@ namespace ECommerce.BusinessLayer.Abstract
 
         Task<CustomResponseDto<TokenDto>> CreateTokenByRefreshToken(string refreshToken);
 
-        Task<CustomResponseDto<NoContentDto>> RevokeRefreshToken(string refreshToken);
+        Task<CustomResponseDto<NoContentDto>> RevokeRefreshTokenAsync(string refreshToken);
         //ilgili kullanıcının RefreshTokenını Null'a set etmek için
 
-        Task<CustomResponseDto<ClientTokenDto>> CreateTokenByClient(ClientLoginDto clientLoginDto);
+        CustomResponseDto<ClientTokenDto> CreateTokenByClient(ClientLoginDto clientLoginDto);
     }
 }

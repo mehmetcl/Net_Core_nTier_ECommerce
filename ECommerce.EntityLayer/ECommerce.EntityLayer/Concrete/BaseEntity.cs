@@ -8,7 +8,7 @@ namespace ECommerce.EntityLayer.Concrete
 {
     public abstract class BaseEntity
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         public DateTime CreatedDate { get; set; }
 

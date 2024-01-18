@@ -24,7 +24,7 @@ namespace ECommerce.API.Middlewares
                     };
                     context.Response.StatusCode = statusCode;
 
-                    var response = CustomResponseDto<NoContentDto>.Fail(statusCode,exceptionFeature.Error.Message);
+                    var response = CustomResponseDto<NoContentDto>.Fail(statusCode,exceptionFeature.Error.Message,false);
 
                     await context.Response.WriteAsync(JsonSerializer.Serialize(response));
                 });

@@ -11,16 +11,11 @@ namespace ECommerce.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BasketController : CustomBaseController
+    public class BasketController(IMapper mapper, IBasketService basketService) : CustomBaseController
     {
-        private readonly IMapper _mapper;
-        private readonly IBasketService _basketService;
+        private readonly IMapper _mapper = mapper;
+        private readonly IBasketService _basketService = basketService;
 
-        public BasketController(IMapper mapper, IBasketService basketService)
-        {
-            _mapper = mapper;
-            _basketService = basketService;
-        }
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -29,14 +24,14 @@ namespace ECommerce.API.Controllers
             return CreateActionResult(CustomResponseDto<List<BasketDto>>.Success(200, basketsDtos));
         }
         [HttpGet("[action]/{userId}")]
-        public async Task<IActionResult> GetBaskets(int userId)
+        public async Task<IActionResult> GetBaskets(string userId)
         {
             var baskets = await _basketService.GetBasketsAsync(userId);
             var basketsDtos = _mapper.Map<List<BasketDto>>(baskets.ToList());
             return CreateActionResult(CustomResponseDto<List<BasketDto>>.Success(200, basketsDtos));
         }
         [HttpGet("[action]/{userId}/{productId}")]
-        public async Task<IActionResult> GetSepetByUserIdAndProductId(int userId, int productId)
+        public async Task<IActionResult> GetSepetByUserIdAndProductId(string userId, int productId)
         {
             var baskets = await _basketService.GetBasketByProductIdAndUserIdAsync(userId, productId);
             var basketsDtos = _mapper.Map<BasketDto>(baskets);
@@ -70,14 +65,14 @@ namespace ECommerce.API.Controllers
         public async Task<IActionResult> Update(BasketDto basketDto)
         {
             await _basketService.UpdateAsync(_mapper.Map<Basket>(basketDto));
-            return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
+            return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204, true));
         }
         [HttpDelete("{id}")]
         public async Task<IActionResult> Remove(string id)
         {
             var basket = await _basketService.GetByIdAsync(id);
             await _basketService.RemoveAsync(basket);
-            return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
+            return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204, true));
         }
     }
 }

@@ -9,6 +9,6 @@ namespace ECommerce.DataAccessLayer.Abstract
 {
     public interface IAddressDal:IGenericDal<Address>
     {
-        IQueryable<Address> GetAddress(int userId);
+        IQueryable<Address> GetAddress(string userId);
     }    
 }

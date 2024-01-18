@@ -9,9 +9,9 @@ namespace ECommerce.DataAccessLayer.Abstract
 {
     public interface IBasketDal:IGenericDal<Basket>
     {
-        IQueryable<Basket> GetBaskets(int userId);
+        IQueryable<Basket> GetBaskets(string userId);
 
         Task<Basket> ProductIdAndUserId(Basket basket);
-        Task<Basket> GetBasketByProductIdAndUserId(int userId, int productId);
+        Task<Basket> GetBasketByProductIdAndUserId(string userId, int productId);
     }
 }

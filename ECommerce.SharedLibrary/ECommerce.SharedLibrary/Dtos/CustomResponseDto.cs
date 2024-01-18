@@ -31,7 +31,7 @@ namespace ECommerce.SharedLibrary.Dtos
 
             };
         }
-        public static CustomResponseDto<T> Success(int statusCode)
+        public static CustomResponseDto<T> Success(int statusCode,bool isShow)
         {
             return new CustomResponseDto<T>
             {
@@ -39,16 +39,17 @@ namespace ECommerce.SharedLibrary.Dtos
                 IsSuccessful = true,
             };
         }
-        public static CustomResponseDto<T> Fail(int statusCode, List<string> errors)
+        public static CustomResponseDto<T> Fail( int statusCode, List<string> errors,bool isactive)
         {
             return new CustomResponseDto<T>
             {
+                
                 StatusCode = statusCode,
                 Errors = errors,
                  IsSuccessful = false,
             };
         }
-        public static CustomResponseDto<T> Fail(int statusCode, string error)
+        public static CustomResponseDto<T> Fail(int statusCode, string error,bool isactive)
         {
             return new CustomResponseDto<T>
             {

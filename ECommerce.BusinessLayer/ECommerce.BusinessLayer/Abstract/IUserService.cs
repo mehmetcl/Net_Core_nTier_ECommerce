@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ECommerce.BusinessLayer.Abstract
 {
-    public interface IUserService:IGenericService<User>
+    public interface IUserService
     {
         Task<CustomResponseDto<UserDto>> CreateUserAsync(UserDto userDto);
 

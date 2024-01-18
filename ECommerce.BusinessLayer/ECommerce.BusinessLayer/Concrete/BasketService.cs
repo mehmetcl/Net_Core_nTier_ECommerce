@@ -42,7 +42,7 @@ namespace ECommerce.BusinessLayer.Concrete
             }
         }
 
-        public async Task<Basket> GetBasketByProductIdAndUserIdAsync(int userId, int productId)
+        public async Task<Basket> GetBasketByProductIdAndUserIdAsync(string userId, int productId)
         {
             var baskets = await _basketDal.GetBasketByProductIdAndUserId(userId, productId);
             if (baskets == null)
@@ -55,7 +55,7 @@ namespace ECommerce.BusinessLayer.Concrete
             return baskets;
         }
 
-        public async Task<IEnumerable<Basket>> GetBasketsAsync(int userId)
+        public async Task<IEnumerable<Basket>> GetBasketsAsync(string userId)
         {
             var Baskets = await _basketDal.GetBaskets(userId).ToListAsync();
 

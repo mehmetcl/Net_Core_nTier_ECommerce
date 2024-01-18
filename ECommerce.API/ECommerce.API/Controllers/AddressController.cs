@@ -11,16 +11,10 @@ namespace ECommerce.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AddressController : CustomBaseController
+    public class AddressController(IMapper mapper, IAddressService addressService) : CustomBaseController
     {
-        private readonly IMapper _mapper;
-        private readonly IAddressService _addressService;
-
-        public AddressController(IMapper mapper, IAddressService addressService)
-        {
-            _mapper = mapper;
-            _addressService = addressService;
-        }
+        private readonly IMapper _mapper = mapper;
+        private readonly IAddressService _addressService = addressService;
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
@@ -40,7 +34,7 @@ namespace ECommerce.API.Controllers
             return CreateActionResult(CustomResponseDto<AddressDto>.Success(200, addressesDto));
         }
         [HttpGet("[action]/{userId}")]
-        public async Task<IActionResult> GetAddresses(int userId)
+        public async Task<IActionResult> GetAddresses(string userId)
         {
             var addresses = await _addressService.GetAddressAsync(userId);
             var addressesDtos = _mapper.Map<List<AddressDto>>(addresses.ToList());
@@ -64,7 +58,7 @@ namespace ECommerce.API.Controllers
             var address = await _addressService.GetByIdAsync(id);
                 await _addressService.RemoveAsync(address);
 
-            return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
+            return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204, true));
         }
         [HttpPut]
         public async Task<IActionResult> Update(AddressDto addressDto)
@@ -72,7 +66,7 @@ namespace ECommerce.API.Controllers
             await _addressService.UpdateAsync(_mapper.Map<Address>(addressDto));
 
 
-            return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
+            return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204, true));
         }
     }
 }

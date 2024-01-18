@@ -6,6 +6,8 @@ using ECommerce.DataAccessLayer.Abstract;
 using ECommerce.DataAccessLayer.Concrete;
 using ECommerce.DataAccessLayer.Repositories;
 using ECommerce.DataAccessLayer.UnitOfWork;
+using ECommerce.EntityLayer.Concrete;
+using Microsoft.AspNetCore.Identity;
 using System.Reflection;
 using Module = Autofac.Module;
 
@@ -23,6 +25,7 @@ namespace ECommerce.API.Modules
 
             builder.RegisterType(typeof(UnitOfWork)).As(typeof(IUnitOfWork)).InstancePerLifetimeScope();
 
+          
 
             var apiAssembly=Assembly.GetExecutingAssembly();
             //Üzerinde çalıştığın assembly(API Katmanı)

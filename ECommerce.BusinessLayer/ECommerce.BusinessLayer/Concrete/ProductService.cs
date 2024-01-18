@@ -13,16 +13,10 @@ using System.Threading.Tasks;
 
 namespace ECommerce.BusinessLayer.Concrete
 {
-    public class ProductService : GenericService<Product>, IProductService
+    public class ProductService(IGenericDal<Product> genericDal, IUnitOfWork unitofWork, IProductDal productdal, IMapper mapper) : GenericService<Product>(genericDal, unitofWork), IProductService
     {
-        private readonly IProductDal _productdal;
-        private readonly IMapper _mapper;
-
-        public ProductService(IGenericDal<Product> genericDal, IUnitOfWork unitofWork, IProductDal productdal, IMapper mapper) : base(genericDal, unitofWork)
-        {
-            _productdal = productdal;
-            _mapper = mapper;
-        }
+        private readonly IProductDal _productdal = productdal;
+        private readonly IMapper _mapper = mapper;
 
         public async Task<CustomResponseDto<List<ProductWithCategoryDto>>> GetProductWithCategory()
         {

@@ -7,14 +7,9 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace ECommerce.API.Filters
 {
-    public class NotFoundFilter<T> : IAsyncActionFilter where T : BaseEntity
+    public class NotFoundFilter<T>(IGenericService<T> service) : IAsyncActionFilter where T : BaseEntity
     {
-        private readonly IGenericService<T> _service;
-
-        public NotFoundFilter(IGenericService<T> service)
-        {
-            _service = service;
-        }
+        private readonly IGenericService<T> _service = service;
 
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
@@ -24,13 +19,13 @@ namespace ECommerce.API.Filters
                 return;
             }
             var id = (int)idValue;
-            var anyEntity=await _service.AnyAsync(x=>int.Parse(x.Id)==id);
+            var anyEntity=await _service.AnyAsync(x=>x.Id==id);
             if (anyEntity)
             {
                 await next.Invoke();
                 return;
             }
-            context.Result = new NotFoundObjectResult(CustomResponseDto<NoContentDto>.Fail(404, $"{typeof(T).Name}({id} not found)"));
+            context.Result = new NotFoundObjectResult(CustomResponseDto<NoContentDto>.Fail(404, $"{typeof(T).Name}({id} not found)",true));
         }
     }
 }

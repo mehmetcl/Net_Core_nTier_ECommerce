@@ -13,16 +13,11 @@ using System.Threading.Tasks;
 
 namespace ECommerce.BusinessLayer.Concrete
 {
-    public class OrderService : GenericService<Order>, IOrderService
+    public class OrderService(IGenericDal<Order> genericDal, IUnitOfWork unitofWork, IOrderDal orderDal, IMapper mapper) : GenericService<Order>(genericDal, unitofWork), IOrderService
     {
-        private readonly IOrderDal _orderDal;
-        private readonly IMapper _mapper;
+        private readonly IOrderDal _orderDal = orderDal;
+        private readonly IMapper _mapper = mapper;
         private readonly IUnitOfWork _unitofWork;
-        public OrderService(IGenericDal<Order> genericDal, IUnitOfWork unitofWork, IOrderDal orderDal, IMapper mapper) : base(genericDal, unitofWork)
-        {
-            _orderDal = orderDal;
-            _mapper = mapper;
-        }
 
         public async Task<Order> CreateOrderAsync(Order order)
         {
@@ -31,7 +26,7 @@ namespace ECommerce.BusinessLayer.Concrete
             return order;
         }
 
-        public async Task<IEnumerable<Order>> GetOrdersByUserIdAsync(int userId)
+        public async Task<IEnumerable<Order>> GetOrdersByUserIdAsync(string userId)
         {
             var orders = await _orderDal.GetOrdersByUserId(userId).ToListAsync();
             if (orders.Count <= 0)

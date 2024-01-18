@@ -9,7 +9,7 @@ namespace ECommerce.BusinessLayer.Abstract
 {
     public interface IOrderService:IGenericService<Order>
     {
-        Task<IEnumerable<Order>> GetOrdersByUserIdAsync(int userId);
+        Task<IEnumerable<Order>> GetOrdersByUserIdAsync(string userId);
 
         Task<Order> CreateOrderAsync(Order order);
     }

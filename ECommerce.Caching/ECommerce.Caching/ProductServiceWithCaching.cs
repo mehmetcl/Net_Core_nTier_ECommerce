@@ -70,7 +70,7 @@ namespace ECommerce.Caching
         public Task<Product> GetByIdAsync(string id)
         {
 
-            Product product = _memoryCache.Get<List<Product>>(CacheProductKey).FirstOrDefault(x => int.Parse(x.Id) == int.Parse(id));
+            Product product = _memoryCache.Get<List<Product>>(CacheProductKey).FirstOrDefault(x => x.Id == int.Parse(id));
 
             if (product == null)
             {

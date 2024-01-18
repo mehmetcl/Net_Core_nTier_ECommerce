@@ -17,12 +17,12 @@ namespace ECommerce.DataAccessLayer.EntityFrameWork
         {
         }
 
-        public async Task<Basket> GetBasketByProductIdAndUserId(int userId, int productId)
+        public async Task<Basket> GetBasketByProductIdAndUserId(string userId, int productId)
         {
             return await _context.Baskets.Where(x => x.UserId == userId && x.ProductId == productId).FirstOrDefaultAsync();
         }
 
-        public IQueryable<Basket> GetBaskets(int userId)
+        public IQueryable<Basket> GetBaskets(string userId)
         {
             return _context.Baskets.Where(x => x.UserId == userId);
         }

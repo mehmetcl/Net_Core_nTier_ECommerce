@@ -10,18 +10,11 @@ using Microsoft.AspNetCore.Mvc;
 namespace ECommerce.API.Controllers
 {
     
-    public class CategoriesController : CustomBaseController
+    public class CategoriesController(IMapper mapper, IGenericService<Category> service, ICategoryService categoryService) : CustomBaseController
     {
-        private readonly IMapper _mapper;
-        private readonly IGenericService<Category> _service;
-        private readonly ICategoryService _categoryService;
-
-        public CategoriesController(IMapper mapper, IGenericService<Category> service, ICategoryService categoryService)
-        {
-            _mapper = mapper;
-            _service = service;
-            _categoryService = categoryService;
-        }
+        private readonly IMapper _mapper = mapper;
+        private readonly IGenericService<Category> _service = service;
+        private readonly ICategoryService _categoryService = categoryService;
 
         [HttpGet("[action]/{CategoryId}")]
         public async Task<IActionResult> GetSingleCategoryByIdWithProductAsync(int CategoryId)
@@ -51,7 +44,7 @@ namespace ECommerce.API.Controllers
             await _categoryService.UpdateAsync(_mapper.Map<Category>(categoryDto));
 
 
-            return CreateActionResult(SharedLibrary.Dtos.CustomResponseDto<NoContentDto>.Success(204));
+            return CreateActionResult(SharedLibrary.Dtos.CustomResponseDto<NoContentDto>.Success(204, true));
         }
 
         [HttpDelete("{id}")]
@@ -60,13 +53,13 @@ namespace ECommerce.API.Controllers
             var category = await _categoryService.GetByIdAsync(id);
 
             if (category == null)
-                return CreateActionResult(CustomResponseDto<NoContentDto>.Fail(404, "bu Id ye sahip kategori bulunamadı."));
+                return CreateActionResult(CustomResponseDto<NoContentDto>.Fail(404, "CategoryId not Found",true));
 
 
             await _categoryService.RemoveAsync(category);
 
 
-            return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
+            return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204, true));
         }
     }
 }

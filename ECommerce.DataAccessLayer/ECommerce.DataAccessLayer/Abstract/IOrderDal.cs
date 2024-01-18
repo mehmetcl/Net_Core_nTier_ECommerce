@@ -9,7 +9,7 @@ namespace ECommerce.DataAccessLayer.Abstract
 {
     public interface IOrderDal:IGenericDal<Order>
     {
-        IQueryable<Order> GetOrdersByUserId(int userId);
+        IQueryable<Order> GetOrdersByUserId(string userId);
 
         Task CreateOrderAsync(Order order);
     }
